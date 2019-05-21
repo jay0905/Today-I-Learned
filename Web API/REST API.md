@@ -21,9 +21,10 @@ REST는 다음과 같은 스타일을 지켜야 한다
 다른 것은 쉽게 구현이 가능하지만, uniform interface는 힘듦.   
   
 uniform interface의 스타일
-- 리소스가 URI로 식별되야 합니다.
-- 리소스를 생성,수정,추가하고자 할 때 HTTP메시지에 표현을 해서 전송해야 합니다.
-- 메시지는 스스로 설명할 수 있어야 합니다. (Self-descriptive message)
-- 애플리케이션의 상태는 Hyperlink를 이용해 전이되야 합니다.(HATEOAS)
+------------
+- 리소스가 URI로 식별되야 함.
+- 리소스를 생성,수정,추가하고자 할 때 HTTP메시지에 표현을 해서 전송해야 함.
+- 메시지는 스스로 설명할 수 있어야 함. (Self-descriptive message)
+- 애플리케이션의 상태는 Hyperlink를 이용해 전이되야 함.(HATEOAS)
   
 REST API는 쉽지 않기 때문에 보통은 Web API(HTTP API)를 사용한다.
