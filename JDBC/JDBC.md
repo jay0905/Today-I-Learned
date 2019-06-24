@@ -9,3 +9,20 @@ JDBC(Java Database Connectivity)의 정의
 JDBC 클래스의 생성 관계
 --------
 ![image](https://cphinf.pstatic.net/mooc/20180201_49/1517475141729UGWfv_PNG/2_11_1_JDBC_.PNG)
+
+statement 생성
+--------------
+`Statement stmt = con.createStatement();`
+
+질의 수행
+--------
+`ResultSet rs = stmt.executeQuery("select no from user");`
+
+ResultSet으로 결과 받기
+----------------------
+```
+ResultSet rs = stmt.executeQuery("select no from user");
+while(rs.next())
+	System.out.println(rs.getInt("no"));
+```
+
