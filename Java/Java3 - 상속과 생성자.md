@@ -53,3 +53,49 @@ c1.substract();
 - 유지 보수가 쉽다
 - 가독성이 높아진다
 - 재활용성의 증가
+
+상속과 생성자
+========
+생성자가 상속을 만나면서 발생한 복잡성 문제  
+  
+생성자는 객체를 생성하는 역할. 객체를 생성하는 과정에서 최초로 수행해야하는 과정을 할 수 있게함. 
+
+```
+package org.opentutorials.javatutorials.Inheritance.example4;
+public class ConstructorDemo {
+    public static void main(String[] args) {
+        ConstructorDemo  c = new ConstructorDemo();
+    }
+}
+```
+위 예제는 에러가 발생하지 않음. ConstructorDemo 객체를 생성할 때 자동으로 생성자를 만들어주기 때문.
+
+```
+package org.opentutorials.javatutorials.Inheritance.example4;
+public class ConstructorDemo {
+    public ConstructorDemo(int param1) {}
+    public static void main(String[] args) {
+        ConstructorDemo  c = new ConstructorDemo();
+    }
+}
+```
+위 예제는 에러 발생.  
+어떤 생성자가 개발자에 의해 만들어지게되면, 자바는 생성자를 암시적으로 만들어주지 않는다.  
+ConstructorDemo 생성자가 호출이 되어야하는데, 자바는 그것을 자동으로 만들어주징 않음.
+
+```
+package org.opentutorials.javatutorials.Inheritance.example4;
+public class ConstructorDemo {
+    public ConstructorDemo(){}
+    public ConstructorDemo(int param1) {}
+    public static void main(String[] args) {
+        ConstructorDemo  c = new ConstructorDemo();
+    }
+}
+```
+
+인자가 없는 기본 생성자를 명시적으로 선언. 그러면 new constructorDemo라는 생성자가 호출될 때, 명시적으로 선언해준 생성자의 정의가 실현됨. 이번 수업의 핵심을 이해하기 위한 선행학습이다. 
+
+하위 클래스가 상위 클래스를 참조할 수 있는 방법.   
+하위 클래스에서 super()를 사용. super는 부모 클래스를 의미. 괄호가 붙어있으면 부모 클래스의 생성자. 그 생성자에 값을 준다. 
+
