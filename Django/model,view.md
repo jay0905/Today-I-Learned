@@ -37,7 +37,7 @@ class Post(models.Model): // models는 Post가 장고 모델임을 의미
 
 데이터베이스에 모델을 위한 테이블 만들기
 -----------------
-`python manage.py makemigrations blog` : 데이터베이스에 반영할 수 있도록 migration file을 준비
+`python manage.py makemigrations blog` : 데이터베이스에 반영할 수 있도록 migration file을 준비  
 `python manage.py migrate blog` : 실제 데이터베이스에 모델 추가 반영  
 **Migrations** are Django’s way of propagating changes you make to your models (adding a field, deleting a model, etc.) into your database schema. 
 
