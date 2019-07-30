@@ -1,3 +1,5 @@
+출처: 장고걸스 튜토리얼 (출처: https://developer.mozilla.org/ko/docs/Learn/Server-side/Django)
+
 - 모델은 객체의 한 종류. 모델을 저장하면 그 내용이 데이터베이스에 저장됨
 
 startapp
