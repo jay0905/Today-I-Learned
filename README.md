@@ -7,6 +7,7 @@ Categories
 - Javascript
 - Java
 - SQL
+- Django
 
 Sources
 -------
