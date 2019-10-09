@@ -120,3 +120,54 @@ def concat(self, L)::
 		self.tail = L.tail
 	self.nodeCount += L.nodeCount
 ```
+
+연결 리스트가 힘을 발휘할 때
+------------
+- 스마트폰 이용하던 앱 기록, 삭제
+- 삽입과 삭제가 유연하다는 것이 장점
+- 그러나 현재 코드는 효율적이지 않으므로 새로운 메서드를 만들어야 한다
+	- 노드를 주고 삽입하는 메서드
+	- `insertAfter(prev, newNode)`
+	- `popAfter(prev)` 맨 앞은?
+
+조금 변형된 연결 리스트
+-----------
+- 맨 앞에 dummy node를 추가한 형태
+```
+class LinkedList:
+	def __init__(self):
+		self.nodeCount = 0
+		self.head = Node(None)
+		self.tail = None
+		self.head.next = self.tail
+```
+
+연결 리스트 연산 - 원소의 삽입
+----------------
+메서드 insertAt()의 구현
+`def insertAt(self, pos, newNode):`
+이미 구현한 insertAfter()를 호출하여 이용하는 것으로
+1. pos 범위 조건 확인
+2. pos == 1인 경우에는 head 뒤에 새 node 삽입
+3. pos == nodeCount + 1 인 경우는 prev <- tail
+4. 그렇지 않은 경우에는 prev <- getAt(...)
+  
+연결 리스트 연산 - 원소의 삭제
+--------------
+prev의 다음 node를 삭제하고 그 node의 data를 리턴
+코드 구현 주의사항
+1. prev가 마지막 node일 때 (prev.next == None)
+	- 삭제할 node 없음
+	- return None
+2. 리스트 맨 끝의 node를 삭제할 때 (curr.next == None)
+	- tail 조정 필요
+	
+연결 리스트 연산 - 두 리스트 연결
+----------
+```
+def concat(self, L):
+	self.tail.next = L.head.next
+	if L.tail:
+		self.tail = L.tail
+	self.nodeCount += L.nodeCount
+```
