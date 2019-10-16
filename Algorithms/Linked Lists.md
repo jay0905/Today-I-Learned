@@ -161,6 +161,25 @@ prev의 다음 node를 삭제하고 그 node의 data를 리턴
 	- return None
 2. 리스트 맨 끝의 node를 삭제할 때 (curr.next == None)
 	- tail 조정 필요
+
+```
+    def popAfter(self, prev):
+        if prev.next == None:
+            return None
+        curr = prev.next
+        if curr.next == None:
+            self.tail = prev
+        
+        prev.next = curr.next
+        self.nodeCount -= 1
+        return curr.data
+
+    def popAt(self, pos):
+        if pos < 1 or pos > self.nodeCount:
+            raise IndexError     
+        prev = self.getAt(pos-1)
+        return self.popAfter(prev)
+```
 	
 연결 리스트 연산 - 두 리스트 연결
 ----------
