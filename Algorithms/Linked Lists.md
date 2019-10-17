@@ -190,3 +190,87 @@ def concat(self, L):
 		self.tail = L.tail
 	self.nodeCount += L.nodeCount
 ```
+
+양방향 연결 리스트 (Double Linked Lists)
+==============
+- 앞으로도 (다음 node) 뒤로도 (이전 node)진행 가능
+- Node 구조 확장
+
+```
+class Node:
+	def __init__(self, item):
+		self.data = item
+		self.prev = None
+		self.next = None
+```
+- 리스트 처음과 끝에 dummy node를 두려고 함
+	- 데이터를 담고 있는 node가 모두 같은 모양
+  
+```
+class DoublyLinkedList:
+	def __init__(self, item):
+		self.nodeCount = 0
+		self.head = Node(None)
+		self.tail = Node(None)
+		self.head.prev =  None
+		self.head.next = self.tail
+		self.tail.prev = self.head
+		self.tail.next = None
+```
+
+리스트 순회
+------
+```
+def traverse(self):
+	result = []
+	curr = self.head
+	while curr.next.next:
+		curr = curr.next
+		result.append(curr.data)
+	return result
+```
+
+리스트 역순회
+-----
+```
+def reverse(self):
+	result = []
+	curr = self.tail
+	while curr.prev.prev:
+		curr = curr.prev
+		result.append(curr.data)
+	return result
+```
+
+원소의 삽입
+---------
+```
+def insertAfter(self, prev, newNode):
+	next = prev.next
+	newNode.prev = prev
+	newNode.next = next
+	prev.next = newNode
+	next.prev = newNode
+	self.nodeCount += 1
+	return True
+```
+
+리스트 마지막에 원소 삽입하려면? 코드 개선
+-----------
+```
+def getAt(self, pos):
+	if pos < 0 or pos > self.nodeCount:
+		return None
+	if pos > self.nodeCount // 2
+		i = 0
+		curr = self.tail
+		while i < self.nodeCount - pos + 1:
+			curr = curr.prev
+			i += 1
+	else:
+		curr = curr.next
+		i += 1
+	return curr
+```
+
+	
