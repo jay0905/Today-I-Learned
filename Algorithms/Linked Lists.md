@@ -283,4 +283,13 @@ def getAt(self, pos):
 	return curr
 ```
 
-	
+리스트 병합
+--------
+```
+def concat(self, L):
+        self.tail.prev.next = L.head.next
+        L.head.next.prev = self.tail.prev
+        self.tail = L.tail
+        self.nodeCount += L.nodeCount
+        return self
+```
