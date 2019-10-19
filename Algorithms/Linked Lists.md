@@ -254,6 +254,16 @@ def insertAfter(self, prev, newNode):
 	self.nodeCount += 1
 	return True
 ```
+```
+def insertBefore(self, next, newNode):
+        prev = next.prev
+        prev.next = newNode
+        newNode.prev = prev
+        newNode.next = next
+        next.prev = newNode
+        self.nodeCount += 1
+        return True
+```
 
 리스트 마지막에 원소 삽입하려면? 코드 개선
 -----------
