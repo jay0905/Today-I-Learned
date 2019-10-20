@@ -93,3 +93,63 @@ prec = {
 - 연산자이면 스택에서 이보다 높(거나 같)은 우선순위 것들을 pop, 출력  
 	- 그리고 이 연산자는 스택에 push
 	- 스택에 남아있는 연산자는 모두 pop, 출력
+	
+증위 표현식 -> 후위 표현식 변환 함수
+------------
+```
+class ArrayStack:
+
+    def __init__(self):
+        self.data = []
+
+    def size(self):
+        return len(self.data)
+
+    def isEmpty(self):
+        return self.size() == 0
+
+    def push(self, item):
+        self.data.append(item)
+
+    def pop(self):
+        return self.data.pop()
+
+    def peek(self):
+        return self.data[-1]
+
+prec = {
+    '*': 3, '/': 3,
+    '+': 2, '-': 2,
+    '(': 1
+}
+
+def solution(S):
+    opStack = ArrayStack()
+    answer = ''
+    for c in S:
+        if c.isupper():
+            answer += c
+        elif c == '(':
+            opStack.push(c)
+        elif c == ')':
+            while opStack.peek() != '(':
+                answer += opStack.pop()
+            opStack.pop()
+        else:
+            if opStack.size() != 0:
+                if prec[opStack.peek()] < prec[c]:
+                    opStack.push(c)
+                else:
+                    while prec[opStack.peek()] >= prec[c]:
+                        answer += opStack.pop()
+                        if opStack.size() == 0:
+                            break
+                    opStack.push(c)
+            else:
+                opStack.push(c)
+
+    while not opStack.isEmpty():
+        answer += opStack.pop()
+
+    return answer
+```
