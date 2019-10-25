@@ -1,0 +1,102 @@
+트리 (Trees)
+=========
+
+트리(Tree)
+-----
+- node와 edge를 이용하여 데이터의 배치 형태를 추상화한 자료 구조
+- root와 leaf
+- 맨 위에 위치한 node가 root
+- 더이상 가지를 칠 수 없는 node - leaf
+- 둘 다 아닌 노드 - Internal node
+
+Parent 노드와 Child 노드
+---------
+- 부모의 부모... - ancestor
+- 자식의 자식... - descendant
+
+노드의 수준 (Level)
+-------
+- 거쳐야 하는 간선의 수
+
+트리의 높이 (Height)
+-----
+- 트리의 높이 (height) = 최대 수준(level) + 1
+- 깊이 (depth)라고도 함
+
+부분 트리 (서브트리 - Subtree)
+---------
+- 어느 한 노드를 기준으로 그 밑에 있는 것후손을 빼내면 subtree
+
+노드의 차수 (Degree)
+-------
+- 자식(서브트리)의 수
+- leaf node는 degree 0
+
+이진 트리 (Binary Tree)
+------------
+- 모든 노드의 차수가 2 이하인 트리
+- 재귀적으로 정의할 수 있음
+	- 빈 트리 (empty tree) 이거나
+	- 루트 노드 + 왼쪽 서브트리 + 오른쪽 서브트리
+
+
+포화 이진 트리 (Full Binary Tree)
+--------
+- 모든 레벨에서 노드가 모두 채워져있는 이진 트리
+- 높이가 k이고 노드의 개수가 2^k-1인 이진 트리
+
+완전 이진 트리 (Complete Binary Tree)
+------------
+- 높이 k인 완전 이진 트리
+- 레벨 k-2까지는 모든 노드가 2개의 자식을 가진 포와 이진 트리
+- 레벨 k-1에서는 왼쪽부터 노드가 순차적으로 채워져 있는 이진 트리
+
+이진 트리(Binary Trees)
+==============
+이진 트리의 추상적 자료구조
+---------
+연산의 정의
+- size() - 현재 트리에 포함되어 있는 노드의 수를 구함
+- depth() - 현재 트리의 height를 구함
+- 순회 (traversal)
+
+이진 트리의 구현 - size()
+---------
+전체 이진 트리의 size()  
+= left subtree의 size()  
++ right subtree의 size()  
++ 1 (자기 자신)  
+
+이진 트리의 구현 - depth()
+------------
+전체 이진 트리의 depth()  
+= left subtree의 depth()와 right subtree의 depth()  
+중 더 큰 것 + 1
+
+이진 트리의 순회 (Traversal)
+---------
+- 깊이 우선 순회 (depth first traversal)
+	- 중위 순회 (in-order traversal)
+	- 전위 순회 (pre-order traversal)
+	- 후위 순회 (post-order traversal)
+
+중위 순회 (In-order Traversal)
+-----
+순회의 순서
+1. left subtree
+2. 자기 자신
+3. right subtree
+
+전위 순회 (Pre-order Traversal)
+---------------
+순회의 순서
+1. 자기 자신
+2. left subree
+3. right subtree
+
+후위 순회 (Post-order Traversal)
+------
+순회의 순서
+1. Left subtree
+2. Right subtree
+2. 자기 자신
