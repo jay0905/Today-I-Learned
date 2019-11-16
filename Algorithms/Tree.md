@@ -190,3 +190,65 @@ T.insert(4, 'Peter')
 -------------
 - 높이의 균형을 유지함으로써 O(logn)의 탐색 복잡도 보장
 - 삽입, 삭제 연산이 보다 복잡
+
+노드의 삭제 연산 구현
+--------------
+```
+def remove(self, key):
+        node, parent = self.lookup(key)
+        if node:
+            nChildren = node.countChildren()
+	    # 삭제하려는 노드에 자식이 없는 경우
+            if nChildren == 0:
+	    	# 노드의 부모 노드가 있는지 없는지 판단
+		# 있을 경우 해당 노드가 부모 노드의 오른쪽에 있는지 왼쪽에 있는지 분별한 후
+		# 왼쪽에 있으면 부모의 왼쪽 노드를 None으로, 오른쪽이면 오른쪽 노드를 None으로 만든다
+                if parent:
+                    if node == parent.left:
+                        parent.left = None
+                    else:
+                        parent.right = None
+		# 부모 노드가 없을 경우(해당 노드가 루트 노드일 경우) 루트 노드를 None으로 만든다
+                else:
+                    self.root = None
+	    # 삭제하려는 노드에 자식이 하나일 경우
+            elif nChildren == 1:
+	    	# 자식이 왼쪽 노드인지 오른쪽 노드인지 분별한 후 그 자식 노드를 변수로 가리킨다
+                if node.left:
+                    var = node.left
+                else:
+                    var = node.right
+		# 삭제하려는 노드에 부모 노드가 있는 경우
+		# 해당 노드가 부모 노드의 왼쪽 노드이면, 부모 노드의 왼쪽을 아까 가르켜둔 변수로 바꾼다
+		# 오른쪽이면 오른쪽으로
+                if parent:
+                    if parent.left == node:
+                        parent.left = var
+                    else:
+                        parent.right = var
+		# 부모 노드가 없다면(해당 노드가 루트 노드라면) 루트 노드를 변수로 바꾼다
+                else:
+                    self.root = var
+	    # 노드에 자식이 둘이라면
+            else:
+                parent = node
+                successor = node.right
+		# successor에 왼쪽 자식이 있는 동안은 계속 왼쪽으로 따라 내려간다
+		# 순환문이 끝날 때 successor는 바로 다음 키를 가진 노드를 가리키고 parent는 그 부모 노드를 가리키도록
+                while successor.left:
+                    parent = successor
+                    successor = successor.left
+                node.key = successor.key
+                node.data = successor.data
+		# successor가 parent 노드의 왼쪽 자식인지 오른쪽 자식인지 판단 후
+		# 왼쪽 자식일 경우에는 parent의 왼쪽 자식이 successor의 오른쪽이 되도록 (successor의 왼쪽 자식이 있을 수 없음)
+                if successor == parent.left:
+                    parent.left = successor.right
+                else:
+                    parent.right = successor.right
+
+            return True
+
+        else:
+            return False
+```
