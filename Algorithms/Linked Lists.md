@@ -1,7 +1,9 @@
 추상적 자료구조(Abstract Data Structures)
 -----------------
-추상적 자료구조(Abstract Data Structures)
-자료구조의 내부 구조는 숨겨두고 밖에서 보이는 것을 추상적으로. 밖에서 보이는 것 두 개 - Data, A set of operations
+추상적 자료구조(Abstract Data Structures)  
+- 자료구조의 내부 구조는 숨겨두고 밖에서 보이는 것을 추상적으로. 
+- 밖에서 보이는 것 두 개 - Data, A set of operations
+  
 - Data
 	- ex) 정수, 문자열, 레코드
 - A set of operations
