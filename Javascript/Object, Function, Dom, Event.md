@@ -64,3 +64,14 @@ const calculator = {
 const plus = calculator.plus(5, 5)
 console.log(plus)
 ```
+
+## Modifying the DOM with JS
+- querySelecotr는 노드의 첫번째 자식을 반환함
+- id로 찾고 싶으면 "#title", class로 찾고 싶으면 ".title"  
+
+## Events and event handlers
+- 자바스크립트는 이벤트에 반응하기 위해서 만들어짐
+- `addEventListner` 이벤트 받기를 기다린다
+- `window.addEventListener("resize", handleResize);`
+	- 함수에 ()를 쓰지 않는 것은 함수를 원하는 때에 호출하라는 것
+	- 괄호를 쓰면 지금 당장 호출하라는 뜻이 됨
