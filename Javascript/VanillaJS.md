@@ -75,3 +75,9 @@ console.log(plus)
 - `window.addEventListener("resize", handleResize);`
 	- 함수에 ()를 쓰지 않는 것은 함수를 원하는 때에 호출하라는 것
 	- 괄호를 쓰면 지금 당장 호출하라는 뜻이 됨
+
+## Make your first JS App
+- `setInterva(fn, 시간)`
+- `querySelector`는 찾은 첫번째 것만 가져옴.
+	- `querySelctorAll` 은 모든 것을 가져옴 
+- local storage: 작은 자바스크립트 정보들을 저장하는 storage
