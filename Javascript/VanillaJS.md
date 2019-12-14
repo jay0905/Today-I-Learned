@@ -81,3 +81,13 @@ console.log(plus)
 - `querySelector`는 찾은 첫번째 것만 가져옴.
 	- `querySelctorAll` 은 모든 것을 가져옴 
 - local storage: 작은 자바스크립트 정보들을 저장하는 storage
+- event의 preventDefault
+	- 이벤트가 일어나면 root에서 일어나고 form으로 일어난다.
+	- form을 제출하는 event가 발생하면, event는 document까지 계속 위로 올라감.
+	- document는 다른 곳으로 간다. 프로그램 되어진 다른 곳으로 가고 새로고침 되는 것.
+	- 이런 기본 행동을 막고 싶을 때 preventDefault()를 사용
+- local storage에는 자바스크립트의 data를 저장할 수 없다. string만 저장할 수 있음. 
+	- 그런데 `JSON.stringify`는 자바스크립트 object를 string으로 바꿔준다. 
+- JSON은 'JavaScript Object Notation'의 줄임말
+	- 데이터를 전달할 때, 자바스크립트가 그걸 다룰 수 있도록 object로 바꿔주는 기능
+- `forEach()`: array에 담겨있는 것들 가각에 한번씩 함수를 실행시켜줌
