@@ -91,3 +91,6 @@ console.log(plus)
 - JSON은 'JavaScript Object Notation'의 줄임말
 	- 데이터를 전달할 때, 자바스크립트가 그걸 다룰 수 있도록 object로 바꿔주는 기능
 - `forEach()`: array에 담겨있는 것들 가각에 한번씩 함수를 실행시켜줌
+- `document.addEventListener(event, function, useCapture)`
+	- event: A string that specifies the name of the event
+		- e.g. "click", "show", "toggle"...
