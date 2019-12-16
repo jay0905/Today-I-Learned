@@ -94,3 +94,5 @@ console.log(plus)
 - `document.addEventListener(event, function, useCapture)`
 	- event: A string that specifies the name of the event
 		- e.g. "click", "show", "toggle"...
+- `.then()`
+	- 기본적으로 함수를 호출. 데이터가 완전히 들어온 다음 호출한다. 
