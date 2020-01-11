@@ -1,127 +1,87 @@
-트리 (Trees)
-=========
+## 트리 (Trees)
+- 비선형적 자료 구조 (배열, linked lists, stacks, queues는 선형적 구조)
+- 트리는 root와 leaf로 이루어진다
+- 더 이상 가지를 칠 수 없는 node를 leaf라고 한다
+- 둘 다 아닌 노드를 internal node라고 한다
+- 트리는 비어있거나 root 원소 하나일 수도 있음
+- 노드가 거쳐야 하는 간선의 수를 Level이라고 한다. 
+- 트리의 높이 (Height) = level + 1
+- 노드의 차수 (Degree) = 자식의 수 (leaf node는 degree가 0)
 
-트리(Tree)
------
-- node와 edge를 이용하여 데이터의 배치 형태를 추상화한 자료 구조
-- root와 leaf
-- 맨 위에 위치한 node가 root
-- 더이상 가지를 칠 수 없는 node - leaf
-- 둘 다 아닌 노드 - Internal node
+![tree](https://www.i-programmer.info/images/stories/BabBag/trees/Tree1.jpg)
 
-Parent 노드와 Child 노드
----------
-- 부모의 부모... - ancestor
-- 자식의 자식... - descendant
-
-노드의 수준 (Level)
--------
-- 거쳐야 하는 간선의 수
-
-트리의 높이 (Height)
------
-- 트리의 높이 (height) = 최대 수준(level) + 1
-- 깊이 (depth)라고도 함
-
-부분 트리 (서브트리 - Subtree)
----------
-- 어느 한 노드를 기준으로 그 밑에 있는 것후손을 빼내면 subtree
-
-노드의 차수 (Degree)
--------
-- 자식(서브트리)의 수
-- leaf node는 degree 0
-
-이진 트리 (Binary Tree)
-------------
+## 이진 트리 (Binary Tree)
 - 모든 노드의 차수가 2 이하인 트리
-- 재귀적으로 정의할 수 있음
-	- 빈 트리 (empty tree) 이거나
-	- 루트 노드 + 왼쪽 서브트리 + 오른쪽 서브트리
 
+### 포화 이진 트리 (Full Binary Tree)
+- 모든 레벨에서 노드들이 모두 채워져있는 이진 트리
 
-포화 이진 트리 (Full Binary Tree)
---------
-- 모든 레벨에서 노드가 모두 채워져있는 이진 트리
-- 높이가 k이고 노드의 개수가 2^k-1인 이진 트리
+### 완전 이진 트리 (Complete Binary Tree)
+- 마지막 레벨을 제외하고는 모든 노드가 자식 노드를 2개 가진 이진 트리
+- 높이가 k일때 레벨 k-2까지는 모든 노드가 2개의 자식을 가지고 레벨 k-1부터는 왼쪽부터 노드가 순차적으로 채워짐
 
-완전 이진 트리 (Complete Binary Tree)
-------------
-- 높이 k인 완전 이진 트리
-- 레벨 k-2까지는 모든 노드가 2개의 자식을 가진 포와 이진 트리
-- 레벨 k-1에서는 왼쪽부터 노드가 순차적으로 채워져 있는 이진 트리
+![trees](https://www.cs.cmu.edu/~adamchik/15-121/lectures/Trees/pix/full_complete.bmp)
 
-이진 트리(Binary Trees)
-==============
-이진 트리의 추상적 자료구조
----------
-연산의 정의
-- size() - 현재 트리에 포함되어 있는 노드의 수를 구함
-- depth() - 현재 트리의 height를 구함
-- 순회 (traversal)
+## 이진 트리의 구현
+### 노드
+```
+class Node:
+	def __init__(self, item):
+    	self.data = item
+        self.left = None
+        self.right = None
+```
+### 트리
+```
+class BinaryTree:
+	def __init__(self, r):
+    	self.root = r
+```
 
-이진 트리의 구현 - size()
----------
-전체 이진 트리의 size()  
-= left subtree의 size()  
-+ right subtree의 size()  
-+ 1 (자기 자신)  
+### size
+```
+class Node: 
+    def size(self):
+        l = self.left.size if self.left else 0
+        r = self.right.size if self.right else 0
+        return l + r + 1
 
-이진 트리의 구현 - depth()
-------------
-전체 이진 트리의 depth()  
-= left subtree의 depth()와 right subtree의 depth()  
-중 더 큰 것 + 1
+class BinaryTree:
+	def size(self):
+    	if self.root:
+        	return self.root.size()
+        else:
+        	return 0
+```
 
-이진 트리의 순회 (Traversal)
----------
-- 깊이 우선 순회 (depth first traversal)
-	- 중위 순회 (in-order traversal)
-	- 전위 순회 (pre-order traversal)
-	- 후위 순회 (post-order traversal)
+### depth
+```
+class Node:
+	def depth(self):
+    	l = self.left.depth() if self.left else 0
+        r = self.right.depth() if self.right else 0
+        return l+1 if l>r else r+1
+        
+class BinaryTree:
+	def depth(self):
+    	if self.root:
+        	return self.root.depth()
+        else:
+        	return 0
+```
 
-중위 순회 (In-order Traversal)
------
-순회의 순서
-1. left subtree
-2. 자기 자신
-3. right subtree
+##  이진 트리의 순회 (Traversal)
 
-전위 순회 (Pre-order Traversal)
----------------
-순회의 순서
-1. 자기 자신
-2. left subree
-3. right subtree
+### 깊이 우선 순회
+1. in-order (중위 순회): 왼쪽 자식노드(L), 내 노드(P), 오른쪽 자식노드(R) 순서로 방문한다.
+2. pre-order (전위 순회): 내 노드(P), 왼쪽 자식노드(L), 오른쪽 자식노드(R) 순서로 방문한다.
+3. post-order (후위 순회): 왼쪽 자식노드(L), 오른쪽 자식노드(R), 내 노드(P) 순서로 방문한다.
 
-후위 순회 (Post-order Traversal)
-------
-순회의 순서
-1. Left subtree
-2. Right subtree
-2. 자기 자신
-
-넓이 우선 순회 (breadth first traversal)
-==========
-Breadth First Traversal
---------
-- 원칙
-	- level이 낮은 노드를 우선으로 방문
-	- 같은 수준의 노드들 사이에는, 부모 노드의 방문 순서에 따라 방문
-	- 왼쪽 자식 노드를 오른쪽 자식보다 먼저 방문
-- 재귀적 방법이 별로 적합하지 않음
-- 한 노드를 방문했을 때
-	- 나중에 방문할 노드들을 순서대로 기록해 두어야
-	- 큐를 이용
-
-넓이 우선 순회 알고리즘 구현
--------
-1. (초기화) traversal <- 빈 리스트, q <- 빈 큐
-2. 빈 트리가 아니면, root node를 큐에 추가 (enqueue)
-3. q가 비어 있지 않은 동안
-	- node <- q에서 원소를 추출 (dequeue)
-	- node를 방문
-4. q가 빈 큐가 되면 모든 노드 방문 완료
+### 넓이 우선 순회
+- level이 낮은 노드를 우선 방문
+- 같은 수준의 노드들 사이에서는
+	- 부모 노드의 방문 순서에 따라 방문
+	- 왼쪽 자식 노드를 오른쪽 자식보다 먼저 방문 
 
 이진 탐색 트리 (Binary Search Tree)
 =======
