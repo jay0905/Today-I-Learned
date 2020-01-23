@@ -16,7 +16,8 @@ object 모델은 테두리 같은 역할. 자바스크립트로 브라우저를 
 이미지가 있는 문서. 프로그래밍적으로 이것을 제어하려면 이미지 태그가 자바스크립트로 제어 가능한 형태, object여야 한다. 이 object를 누가 만듦? 브라우저에서 각각의 태그들마다 미리 객체를 만들어놓고 준비. 그 태그에 해당되는 객체를 찾아 메소드 값 등을 가져옴.  
   
 이미지 태그를 제어하고 싶다면 이미지 태그에 해당하는 객체를 가져와야 함.  
-브라우저가 갖고 있는 객체에는 `document`가 있음. 이건 `getElemetsByTagName`이라는 메소드가 있다. 여기에 인자로 `img'를 가져와 return.  
+브라우저가 갖고 있는 객체에는 `document`가 있음. 이건 `getElemetsByTagName`이라는 메소드가 있다.  
+여기에 인자로 `img`를 가져와 return.  
 배열로 return된다. 이를 가져오기 위해서는 `imgs[0]` 이미지 태그를 의미하는 객체를 가져옴.  
 `imgs[0].style` 이 객체가 가지고 있는 style이라는 property를 의미.  
   
@@ -99,6 +100,30 @@ window.open 메소드는 새 창을 생성함.
 `window.open('demo2.html', '_blank', 'width=200, resizable=yes');`
 보안상 옵션은 제한하는 경우가 있음.  
 
+### HTML Element
+```
+<script>
+    var li = document.getElementById('active');
+    console.log(li.constructor.name);
+    var lis = document.getElementsByTagName('li');
+    console.log(lis.constructor.name);
+</script>
+```
+실행결과
+```
+HTMLLIElement 
+HTMLCollection
+```
+- document.getElementById : 리턴 데이터 타입은 HTMLElement
+- document.getElementsByTagName : 리턴 데이터 타입은 HTMLCollection
+
+### Dom tree
+모든 엘리먼트는 HTMLElement의 자식.  
+HYMLElement는 Element의 자식이고 Element는 Node의 자식. Node는 Object의 자식. 이러한 관계를 DOM Tree라고 함. 
+
+### HTML Collection
+리턴 결과가 복수인 경우 사용하게 되는 객체.  
+그 객체를 제거하게 되면 html에서는 제거한 순간 반영이 된다. 
 
 
 
