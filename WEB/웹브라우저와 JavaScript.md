@@ -126,6 +126,52 @@ HYMLElement는 Element의 자식이고 Element는 Node의 자식. Node는 Object
 그 객체를 제거하게 되면 html에서는 제거한 순간 반영이 된다. 
 
 
+### 속성 API
+태그명만으로는 부족한 부가적인 정보. 
+- Element.getAttribute(name)
+- Element.setAttribute(name, value)
+- Element.hasAttribute(name);
+- Element.removeAttribute(name);
+
+#### 속성과 프로퍼티
+- `target.setAttribute('class', 'important');
+attribute 방식
+- `target.className = 'important';`
+property 방식
+  
+property 방식은 더 간편하고 속도도 빠르다.  
+그러나 실제 html 속성 이름과 다른 이름을 갖는 경우가 
+
+있음. 자바스크립트의 이름 규칙 때문.  
+두 방식으로 접근했을 때 값이 다를 수도 있음. 
+
+## Node 객체
+모든 DOM 객체는 Node 객체를 상속 받는다.  
+
+### Node 관계 API
+Node 객체는 Node 간의 관계 정보를 담고 있는 일련의 
+
+API를 가지고 있다.  
+
+### 노드 종류 API
+노드 작업을 하게 되면 현재 선택된 노드가 어떤 타입인
+
+지 판단해야 하는 경우가 있음.  
+
+#### Node Type
+노드의 종류에 따라 정해진 상수가 존재. 
+
+## Document 객체
+DOM의 시작점인 동시에 문서 전체를 의미하는 노드.  
+이 HTMLDocument라는 객체는 문서 전체를 대표하는 객체. 
+
+ 
+document 객체는 window 객체의 property 이다.   
+  
+document 객체의 주요 임무는 새로운 노드를 생성해주는 
+
+역할이다.  
+
 
 
 
