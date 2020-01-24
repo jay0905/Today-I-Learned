@@ -125,6 +125,33 @@ HYMLElement는 Element의 자식이고 Element는 Node의 자식. Node는 Object
 리턴 결과가 복수인 경우 사용하게 되는 객체.  
 그 객체를 제거하게 되면 html에서는 제거한 순간 반영이 된다. 
 
+## Element 객체
+Element를 추상화한 객체. t라는 변수가 가리키는 객체는 html li element.  
+HTMLElement라는 객체의 자식. 대표적인 특성은 style. inline css를 제어. 
+이 HTMLElement는 Element라는 부모 객체가 있음.   
+왜 굳이 Element라는 객체와 HTMLElement라는 객체를 구분하는 것일까?  
+DOM이 HTML만을 제어하기 위한 장치가 아니다.  
+마크업 언어를 제어하기 위한 규격이 DOM이기 때문에 DOM이라는 표준은 html 뿐만 아니라 XML, svg, XUL 등의 마크업 언어를 제어.  
+각각의 언어는 모두 Element를 가지고 있음.  
+모든 Element에 적용할 수 있는 것이 Element라는 객체에 있음.  
+HTMLElement는 HTML이라는 언어에 필요한 기능을 부가적으로 추가하기 위함.  
+그 중 대표적인 것이 style.  
+
+### 식별자 API
+- Element.tagName
+Element라는 객체에는 tagName이라 하는 property가 있음.  
+tagName은 변경되지 않는다. 
+- Element.id
+문서에서 id는 단 하나만 등장할 수 있는 식별자. 
+- Element.className
+여러 개 element를 그룹핑할 때 사용.  
+자바스크립트에서는 class가 아니라 className 사용. 이름이 다를 수도 있음.  
+- Element.classList
+classList라는 property에 저장되어있는 객체는 DOMTokenList라는 객체. 유사배열임. 
+
+### 조회 API
+엘리먼트를 조회하는 기능.  
+document.getElementsBy* 메소드를 통해 엘리먼트를 조회했음. document 객체는 문서 전체를 의미하는 엘리먼트이기에 document의 조회 메소드는 문서 전체를 대상으로 엘리먼트 조회. 
 
 ### 속성 API
 태그명만으로는 부족한 부가적인 정보. 
@@ -140,37 +167,29 @@ attribute 방식
 property 방식
   
 property 방식은 더 간편하고 속도도 빠르다.  
-그러나 실제 html 속성 이름과 다른 이름을 갖는 경우가 
-
-있음. 자바스크립트의 이름 규칙 때문.  
+그러나 실제 html 속성 이름과 다른 이름을 갖는 경우가 있음. 자바스크립트의 이름 규칙 때문.  
 두 방식으로 접근했을 때 값이 다를 수도 있음. 
 
 ## Node 객체
 모든 DOM 객체는 Node 객체를 상속 받는다.  
 
 ### Node 관계 API
-Node 객체는 Node 간의 관계 정보를 담고 있는 일련의 
-
-API를 가지고 있다.  
+Node 객체는 Node 간의 관계 정보를 담고 있는 일련의 API를 가지고 있다.  
 
 ### 노드 종류 API
-노드 작업을 하게 되면 현재 선택된 노드가 어떤 타입인
-
-지 판단해야 하는 경우가 있음.  
+노드 작업을 하게 되면 현재 선택된 노드가 어떤 타입인지 판단해야 하는 경우가 있음.  
 
 #### Node Type
 노드의 종류에 따라 정해진 상수가 존재. 
 
 ## Document 객체
 DOM의 시작점인 동시에 문서 전체를 의미하는 노드.  
-이 HTMLDocument라는 객체는 문서 전체를 대표하는 객체. 
-
- 
+이 HTMLDocument라는 객체는 문서 전체를 대표하는 객체.  
 document 객체는 window 객체의 property 이다.   
   
-document 객체의 주요 임무는 새로운 노드를 생성해주는 
+document 객체의 주요 임무는 새로운 노드를 생성해주는 역할이다.  
 
-역할이다.  
+
 
 
 
