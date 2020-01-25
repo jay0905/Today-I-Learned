@@ -189,6 +189,160 @@ document 객체는 window 객체의 property 이다.
   
 document 객체의 주요 임무는 새로운 노드를 생성해주는 역할이다.  
 
+## Text 객체
+노드를 상속받는 객체.  
+```<p> 블라블라 </p>```
+<p> 는 엘리먼트. 그 안에 있는 것이 텍스트 객체. 
+
+character라는 것을 상속 받는다.
+
+### 값 API
+텍스트 노드가 갖고 있는 기능 중 값 기능.  
+어떻게 값을 알아낼 수 있느냐? 두 가지 API를 통해
+- nodeValue
+- data
+```
+<script>
+    var t = document.getElementById
+
+('target').firstChild;
+    console.log(t.nodeValue);
+    console.log(t.data);
+</script>
+```
+
+### 조작 API
+텍스트 노드가 상속 받은 CharacterData 객체는 문자를 
+
+제어할 수 있는 다양한 API를 제공. 
+- appendData()
+- deleteData()
+- insertData()
+- replaceData()
+- substringData()
+
+## 문서의 기하학적 특성
+
+### Viewport
+문서가 브라우저보다 클 때 스크롤이 생기고 문서의 일부
+
+분만을 표현. 문서에서 사용자에게 보여주는 영역이 바로 
+
+viewport. 바깥쪽에 있는 문서가 실제 문서의 크기를 의
+
+미. 문서의 좌표 viewport.  
+문서상에서 스크롤이 얼마나 됐는지를 알려주는 
+
+pageYoffset.  
+getBoundingClientRect는 viewport의 좌표를 사용.
+
+### 스크롤
+문서의 스크롤 값을 변경하려면 scrollLeft와 scrollTop 
+
+프로퍼티를 이용하면 된다. 
+
+### 스크린의 크기
+`window.innerWidth, window.innerHeight`는 뷰포트의 크
+
+기를 나타냄.  
+`screen.*`은 스트린의 크기를 나타냄.  
+
+## 이벤트
+event는 어떤 사건을 의미. 브라우저에서 사건이란 사용
+
+자가 클릭을 했을 '때', 스크롤을 했을 '때' 등을 의미.  
+onclick 속성의 자바스크립트 코드는 사용자가 버튼을 클
+
+릭했을 '때' 실행됨. 이런 방식을 이벤트 프로그래밍이라
+
+고 함. 
+
+- event target
+target은 이벤트가 일어날 객체를 의미. 아래 코드에서 
+
+타겟은 버튼 태그에 대한 객체가 됨. 
+```<input type="button" onclick="alert
+
+(window.location)" value="alert(window.href)" />```
+
+- event type
+이벤트의 종류를 의미. 위 예제에서는 click이 이벤트 타
+
+입. scroll은 사용자가 스크롤을 움직였다는 이벤트, 
+
+mousemove는 마우스가 움직일 때 발생하는 이벤트.  
+
+- event handler
+이벤트가 발생했을 때 동작하는 코드를 의미.  
+
+#### inline
+이벤트를 발생하기 위해선 이벤트를 등록해야됨. 그 방식 
+
+중 하나가 inline.  
+
+이 이벤트가 동작하고 있는 엘리먼트를 가리킬 때는 `
+
++this` 사용. 
+
+#### 프로퍼티 리스너
+이벤트 대상에 해당하는 객체의 프로퍼티로 이벤트를 등
+
+록하는 방식.  
+이벤트가 실행된 맥락의 정보가 필요할 때는 이벤트 객체
+
+를 사용. 이벤트 객체는 이벤트가 실행될 때 이벤트 핸들
+
+러의 인자로 전달됨. 
+
+#### addEventListener()
+이벤트를 등록하는 가장 권장되는 방식.  
+객체가 click이라는 이벤트를 발생했을 때 두번째 인자로 
+
+전달한 event가 실행됨. 두번째 이자는 event객체를 갖기 
+
+때문에   
+  
+이 방식의 장점은 하나의 이벤트 대상에 복수의 동일 이
+
+벤트 타입 리스너를 등록할 수 있다는 것.  
+만약 코드가 방대하다면 addEventListener를 쓰는 것이 
+
+좋다.  
+
+### 이벤트 전파 (버블링과 캡처링)
+html은 부모 자식 관계를 가지고 있음.  
+중첩된 태그에 이벤트가 등록되어 있다면?  
+부모에 장착된 이벤트부터 자식으로 나아가는 것 - 
+
+capturing  
+자식에서 이벤트 핸들러가 호출되어 부모 이벤트로 나아
+
+가는 것 - bubbling  
+
+### 기본 동작의 취소
+웹브라우저의 구성요소들은 각각 기본적인 동작 방법을 가지고 있다
+
+- 텍스트 필드에 포커스를 준 상태에서 키보드를 입력하면 텍스트가 입력된다
+- 폼에서 submit 버튼을 누르면 데이터가 전송된다
+- a 태그를 클릭하면 href 속성의 URL로 이동한다
+이런 것들을 기본 이벤트라고 하는데 사용자가 만든 이벤트를 이용해서 이런 기본 동작을 취소할 수 있다. 
+  
+```<form action="http://opentutorials.org" onsubmit="if(document.getElementById('prevent').checked) return false;">```
+
+#### property 방식
+리턴 값이 false이면 기본동작이 취소된다
+
+#### addEventListener 방식
+이벤트 객체의 preventDefault 메소드를 실행하면 기본 동작이 취소된다. 
+```
+document.querySelector('a').addEventListener('click', function(event){
+                if(document.getElementById('prevent').checked)
+                    event.preventDefault();
+            });
+```
+
+
+
 
 
 
