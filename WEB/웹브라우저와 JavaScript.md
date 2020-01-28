@@ -191,7 +191,9 @@ document 객체의 주요 임무는 새로운 노드를 생성해주는 역할�
 
 ## Text 객체
 노드를 상속받는 객체.  
-```<p> 블라블라 </p>```
+```
+<p> 블라블라 </p>
+```
 <p> 는 엘리먼트. 그 안에 있는 것이 텍스트 객체. 
 
 character라는 것을 상속 받는다.
@@ -224,122 +226,135 @@ character라는 것을 상속 받는다.
 ## 문서의 기하학적 특성
 
 ### Viewport
-문서가 브라우저보다 클 때 스크롤이 생기고 문서의 일부
-
-분만을 표현. 문서에서 사용자에게 보여주는 영역이 바로 
-
-viewport. 바깥쪽에 있는 문서가 실제 문서의 크기를 의
-
-미. 문서의 좌표 viewport.  
-문서상에서 스크롤이 얼마나 됐는지를 알려주는 
-
-pageYoffset.  
+문서가 브라우저보다 클 때 스크롤이 생기고 문서의 일부분만을 표현. 문서에서 사용자에게 보여주는 영역이 바로 viewport.  
+바깥쪽에 있는 문서가 실제 문서의 크기를 의미. 문서의 좌표 viewport.  
+문서상에서 스크롤이 얼마나 됐는지를 알려주는 pageYoffset.    
 getBoundingClientRect는 viewport의 좌표를 사용.
 
 ### 스크롤
-문서의 스크롤 값을 변경하려면 scrollLeft와 scrollTop 
-
-프로퍼티를 이용하면 된다. 
+문서의 스크롤 값을 변경하려면 scrollLeft와 scrollTop 프로퍼티를 이용하면 된다. 
 
 ### 스크린의 크기
-`window.innerWidth, window.innerHeight`는 뷰포트의 크
-
-기를 나타냄.  
+`window.innerWidth, window.innerHeight`는 뷰포트의 크기를 나타냄.  
 `screen.*`은 스트린의 크기를 나타냄.  
 
 ## 이벤트
-event는 어떤 사건을 의미. 브라우저에서 사건이란 사용
-
-자가 클릭을 했을 '때', 스크롤을 했을 '때' 등을 의미.  
-onclick 속성의 자바스크립트 코드는 사용자가 버튼을 클
-
-릭했을 '때' 실행됨. 이런 방식을 이벤트 프로그래밍이라
-
-고 함. 
+event는 어떤 사건을 의미. 브라우저에서 사건이란 사용자가 클릭을 했을 '때', 스크롤을 했을 '때' 등을 의미.  
+onclick 속성의 자바스크립트 코드는 사용자가 버튼을 클릭했을 '때' 실행됨. 이런 방식을 이벤트 프로그래밍이라고 함. 
 
 - event target
-target은 이벤트가 일어날 객체를 의미. 아래 코드에서 
-
-타겟은 버튼 태그에 대한 객체가 됨. 
-```<input type="button" onclick="alert
-
-(window.location)" value="alert(window.href)" />```
+target은 이벤트가 일어날 객체를 의미. 아래 코드에서 타겟은 버튼 태그에 대한 객체가 됨. 
+```
+<input type="button" onclick="alert(window.location)" value="alert(window.href)" />
+```
 
 - event type
-이벤트의 종류를 의미. 위 예제에서는 click이 이벤트 타
-
-입. scroll은 사용자가 스크롤을 움직였다는 이벤트, 
-
-mousemove는 마우스가 움직일 때 발생하는 이벤트.  
+이벤트의 종류를 의미. 위 예제에서는 click이 이벤트 타입. scroll은 사용자가 스크롤을 움직였다는 이벤트, mousemove는 마우스가 움직일 때 발생하는 이벤트.  
 
 - event handler
 이벤트가 발생했을 때 동작하는 코드를 의미.  
 
 #### inline
-이벤트를 발생하기 위해선 이벤트를 등록해야됨. 그 방식 
+이벤트를 발생하기 위해선 이벤트를 등록해야됨. 그 방식 중 하나가 inline.  
 
-중 하나가 inline.  
-
-이 이벤트가 동작하고 있는 엘리먼트를 가리킬 때는 `
-
-+this` 사용. 
+이 이벤트가 동작하고 있는 엘리먼트를 가리킬 때는 `+this` 사용. 
 
 #### 프로퍼티 리스너
-이벤트 대상에 해당하는 객체의 프로퍼티로 이벤트를 등
-
-록하는 방식.  
-이벤트가 실행된 맥락의 정보가 필요할 때는 이벤트 객체
-
-를 사용. 이벤트 객체는 이벤트가 실행될 때 이벤트 핸들
-
-러의 인자로 전달됨. 
+이벤트 대상에 해당하는 객체의 프로퍼티로 이벤트를 등록하는 방식.  
+이벤트가 실행된 맥락의 정보가 필요할 때는 이벤트 객체를 사용. 이벤트 객체는 이벤트가 실행될 때 이벤트 핸들러의 인자로 전달됨. 
 
 #### addEventListener()
 이벤트를 등록하는 가장 권장되는 방식.  
-객체가 click이라는 이벤트를 발생했을 때 두번째 인자로 
-
-전달한 event가 실행됨. 두번째 이자는 event객체를 갖기 
-
-때문에   
+객체가 click이라는 이벤트를 발생했을 때 두번째 인자로 전달한 event가 실행됨. 두번째 이자는 event객체를 갖기 때문에   
   
-이 방식의 장점은 하나의 이벤트 대상에 복수의 동일 이
-
-벤트 타입 리스너를 등록할 수 있다는 것.  
-만약 코드가 방대하다면 addEventListener를 쓰는 것이 
-
-좋다.  
+이 방식의 장점은 하나의 이벤트 대상에 복수의 동일 이벤트 타입 리스너를 등록할 수 있다는 것.  
+만약 코드가 방대하다면 addEventListener를 쓰는 것이 좋다.  
 
 ### 이벤트 전파 (버블링과 캡처링)
 html은 부모 자식 관계를 가지고 있음.  
 중첩된 태그에 이벤트가 등록되어 있다면?  
-부모에 장착된 이벤트부터 자식으로 나아가는 것 - 
+부모에 장착된 이벤트부터 자식으로 나아가는 것 - capturing    
+자식에서 이벤트 핸들러가 호출되어 부모 이벤트로 나아가는 것 - bubbling  
 
-capturing  
-자식에서 이벤트 핸들러가 호출되어 부모 이벤트로 나아
-
-가는 것 - bubbling  
-
-### 기본 동작의 취소
-웹브라우저의 구성요소들은 각각 기본적인 동작 방법을 가지고 있다
-
+## 기본동작의 취소
+웹브라우저의 구성요소들은 각각 기본적인 동작 방법을 가지고 있음
 - 텍스트 필드에 포커스를 준 상태에서 키보드를 입력하면 텍스트가 입력된다
 - 폼에서 submit 버튼을 누르면 데이터가 전송된다
-- a 태그를 클릭하면 href 속성의 URL로 이동한다
-이런 것들을 기본 이벤트라고 하는데 사용자가 만든 이벤트를 이용해서 이런 기본 동작을 취소할 수 있다. 
-  
-```<form action="http://opentutorials.org" onsubmit="if(document.getElementById('prevent').checked) return false;">```
+- a 태그를 클릭하면 href 속성의 url로 이동한다
+이러한 기본적인 동작들을 기본 이벤트라고 하는데 사용자가 만든 이벤트를 이용해서 이러한 기본 동작을 취소할 수 있다
 
-#### property 방식
-리턴 값이 false이면 기본동작이 취소된다
-
-#### addEventListener 방식
+- inline
+return 값을 false로 하면 기본동작을 취소할 수 있다. 
+- property
+리턴 값이 false 이면 기본동작이 취소된다
+- addEventListener
 이벤트 객체의 preventDefault 메소드를 실행하면 기본 동작이 취소된다. 
+
+## 이벤트 타입
+### 폼
+
+- submit
+폼의 정보를 서버로 전송하는 명령인 submit시에 일어남.
+form 태그에 적용됨.  
+값이 입력되지 않았을 때 preventDefault()를 통해 전송을 중단할 수 있다. 
+- blur, focus
+focus는 엘리먼트에 포커스가 생겼을 때, blur은 포커스가 
+사라졌을 때 발생하는 이벤트이다. 
+
+### 문서 로딩
+웹페이지를 프로그래밍적으로 제어하기 위해서는 웹페이지의 모든 요소에 대한 처리가 끝나야함. 이것을 알려주는 이벤트가 load. 
 ```
-document.querySelector('a').addEventListener('click', function(event){
-                if(document.getElementById('prevent').checked)
-                    event.preventDefault();
-            });
+<html>
+    <head>
+        <script>
+        var t = document.getElementById('target');
+        console.log(t);
+        </script>
+    </head>
+    <body>
+        <p id="target">Hello</p>
+    </body>
+</html>
 ```
+이 코드를 실행하면 null이 뜬다.  
+해결방법 중 하나는 스크립트를 문서 끝에 위치시키는 것 .  
+혹은 load 이벤트를 이용하는 것. 그런데 load 이벤트는 문서 내의 모든 리소스의 다운이 끝난 후에 실행. 어플리케이션 구동이 너무 지연될 수 있음.  
+DOMContentLoded는 문서에서 스크립트 작업을 할 수 있을 때 실행된다. 
+```
+<html>
+    <head>
+        <script>
+            window.addEventListener('load', function(){
+                console.log('load');
+            })
+            window.addEventListener('DOMContentLoaded', function(){
+                console.log('DOMContentLoaded');
+            })
+        </script>
+    </head>
+    <body>
+        <p id="target">Hello</p>
+    </body>
+</html>
+```
+
+## 네트워크 통신
+### Ajax
+자바스크립트를 이용해서 내부적으로 통신할 수 있는 방식.   
+Ajax는 Asynchronous JavaScript and XML의 약자.  
+
+#### POST 방식
+
+### JSON
+JavaScript Object Notation이 약자.  
+자바스크립트에서 객체를 만들 때 사용하는 표현식.  
+일종의 데이터 표준.  
+
+#### JSON API
+`JSON.parse()` : 인자로 전달된 문자열을 자바스크립트 데이터로 변환   
+`JSON.stringify()` : 인자로 전달된 자바스크립트 데이터를 문자열로 변환
+
+#### Ajax와 JSON
 
 
 
